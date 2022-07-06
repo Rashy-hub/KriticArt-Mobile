@@ -3,14 +3,12 @@ import { StatusBar, Text, View, Button, TextInput } from 'react-native';
 import { PublicGallery } from "../components/PublicGallery";
 
 
-export const HomePage = (props)=>{
+export const PrivatePage = ()=>{
 return(
-    <View  style={{ flex: 1}}>
+    <View style={{ flex: 1}}>
         <AppTitle/> 
         <PublicGallery/>        
        
     </View>
     )
-
-    
 }
