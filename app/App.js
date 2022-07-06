@@ -9,6 +9,8 @@ import { ComptePage } from './screens/comptePage';
 import { GalleriesPage } from './screens/galleriesPage' ;
 import { FavoriePage } from './screens/favoriePage';
 import { HomePage } from './screens/homePage';
+import { isUserConnected } from './utils/connection/isUserConnected';
+import { VisitorPage } from './screens/visitorPage';
 
 const Tab = createBottomTabNavigator()
 export default function App() {
@@ -21,9 +23,14 @@ export default function App() {
       return null;
     }
 
-   
+   const isConnected=isUserConnected()
+if(!isConnected)
+{
+  return (<VisitorPage/> )
+}
   return (
 
+      
   
     <NavigationContainer style={{ flex: 1}}>    
         <StatusBar/>  
@@ -49,14 +56,16 @@ export default function App() {
             }
             })}
         >
-            <Tab.Screen name="Acceuil"    component={HomePage} />     
+            <Tab.Screen name="Acceuil"    component={HomePage}  />     
             <Tab.Screen name="Galleries"  component={GalleriesPage} />  
             <Tab.Screen name="Photo"      component={PrivatePage}  /> 
             <Tab.Screen name="Favoris"    component={FavoriePage} />
             <Tab.Screen name="Compte"     component={ComptePage}  />
         </Tab.Navigator>      
     </NavigationContainer>
-    
+  
+  
+
   );
 }
 

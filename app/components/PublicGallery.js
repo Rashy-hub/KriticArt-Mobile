@@ -57,13 +57,11 @@ const renderItem=({item})=>{
     )
 }
 
-export const PublicGallery=()=>{
+export const PublicGallery=(props)=>{
 
-   
-
- 
     return(
         <SafeAreaView style = {{flex:1}}>
+            {props.case?<Text style={{textDecorationLine:'underline'}}>Preview : Please connect for more</Text>:<Text>gallery pour membre</Text>}
            <MasonryList
 
                 style={{alignSelf: 'stretch'}}
