@@ -1,8 +1,10 @@
 import { View ,Text,Image,SafeAreaView,} from "react-native"
-import { ReactElement ,useMemo} from "react";
+import { ReactElement ,useMemo, useState} from "react";
 import MasonryList from '@react-native-seoul/masonry-list';
+import {getRandom} from "../services/unsplashService";
 
 //  here call api service getImagesPublic
+
 const data =[
     {
         id:'1',
@@ -16,7 +18,14 @@ const data =[
         imgPath: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==' ,//require('../assets/splash.png'),
         text:'adaptative-icon'
 
+    },
+    {
+        id:'3',
+        imgPath:"https://images.unsplash.com/profile-1459605087239-77953bcaf042?ixlib=rb-1.2.1&crop=faces&fit=crop&w=64&h=64",
+        text:'unsplash-random'
+
     }
+    
 ]
 
 const ImageCard=(item)=>{
@@ -39,7 +48,6 @@ const ImageCard=(item)=>{
              marginTop: 8,
              }}>
         {item.item.text}
-
             </Text>
             
             
@@ -59,6 +67,17 @@ const renderItem=({item})=>{
 
 export const PublicGallery=(props)=>{
 
+  const [data,setData]=useState();
+  const image=[]
+  getRandom(10).then((res)=>{
+    for (const el of res) {
+
+        
+        image.push({id:el.id,imgPath:el.urls.regular,text:el.created_at})
+       
+    }
+    setData(image)
+  })
     return(
         <SafeAreaView style = {{flex:1}}>
             {props.case?<Text style={{textDecorationLine:'underline'}}>Preview : Please connect for more</Text>:<Text>gallery pour membre</Text>}

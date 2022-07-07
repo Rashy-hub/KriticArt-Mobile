@@ -1,12 +1,11 @@
-import Unsplash, { toJson } from 'unsplash-js/native';
-import config from '../config';
+import { getAxios } from './http-common';
+//oauth required
+//https://api.unsplash.com/photos/random
 
-const unsplash = new Unsplash({
-  applicationId: config.unsplash.accessKey,
-  secret: config.unsplash.secretKey,
-});
 
-export default {
-  listPhotos: unsplash.photos.listPhotos,
-  toJson,
-};
+export const getRandom=(count) =>{
+
+  return getAxios(false).get("/photos/random"+"?count="+count);
+
+}
+

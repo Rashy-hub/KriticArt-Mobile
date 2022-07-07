@@ -1,8 +1,10 @@
-export default {
-    unsplash: {
+export const UnsplashKeys = {
+    
       accessKey:
-        "472cac9117b005dce9808153cbf00fbac1a844ba720438b8c7bc7b2cce26a6ef",
+        "wR8SF37w7nT8fyYFqPf5q_OQ_lgKpdYzDSs-FWDVs60",
       secretKey:
-        "e86e3776cc22b52ad65e3f04127dabdb622958b498d1e61cd0ceaa074176ce03",
-    },
+        "kKFcAIJizgtSyEQgWarr3iRfLFY2Nc6El33G57awI7I",
+      athorization:
+      "n-unf31vIGBamhbly63HkNdC2oBAivqa3Hr4bfVmFq8"  
+   
   };
