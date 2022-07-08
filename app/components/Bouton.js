@@ -1,6 +1,9 @@
-import { Pressable, StyleSheet, Text } from "react-native"
+import { Pressable, StyleSheet, Text } from 'react-native'
+import { useAtom } from 'jotai'
+import { themeAtom } from '../atom'
 
 export default Bouton = ({ title, onPress }) => {
+    const [theme] = useAtom(themeAtom)
     return <Pressable onPress={onPress} style={({ pressed }) => [
         {
             backgroundColor: pressed
@@ -11,14 +14,14 @@ export default Bouton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
     button: {
-        marginTop: 16,
-        height: 40,
-        width: '70%',
+        marginTop: 20,
+        padding: 20,
+        height: 60,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'blue',
     },
     buttonText: {
-        padding: 8,
         fontSize: 16,
         color: 'antiquewhite',
     },
