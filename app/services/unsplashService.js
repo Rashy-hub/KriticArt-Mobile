@@ -3,9 +3,19 @@ import { getAxios } from './http-common';
 //https://api.unsplash.com/photos/random
 
 
-export const getRandom=(count) =>{
+export  const  getRandom=async(count) =>{
 
-  return getAxios(false).get("/photos/random"+"?count="+count);
+    const result = await getAxios(false).get("/photos/random"+"?count="+count);
+    
+   let data=[];
+   for (const photo of result.data) {
+    
+    data.push({id:photo.id,imgPath:photo.urls.small,text:photo.created_at})
+   }
 
+   
+    return data
+
+   
 }
 
