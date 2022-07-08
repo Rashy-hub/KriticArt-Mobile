@@ -1,15 +1,18 @@
 import { Pressable, StyleSheet, Text } from 'react-native'
-import { useAtom } from 'jotai'
-import { themeAtom } from '../atom'
+import { useTheme } from '../styles/theme'
 
 export default Bouton = ({ title, onPress }) => {
-    const [theme] = useAtom(themeAtom)
+    const theme = useTheme()
     return <Pressable onPress={onPress} style={({ pressed }) => [
         {
             backgroundColor: pressed
-                ? 'lightsteelblue'
-                : 'blue'
-        }, styles.button,]}><Text style={styles.buttonText}>{title}</Text></Pressable>
+                ? theme.colors.card
+                : theme.colors.background
+        }, styles.button,]}>
+        <Text style={styles.buttonText}>
+            {title}
+        </Text>
+    </Pressable>
 }
 
 const styles = StyleSheet.create({
@@ -19,10 +22,8 @@ const styles = StyleSheet.create({
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'blue',
     },
     buttonText: {
         fontSize: 16,
-        color: 'antiquewhite',
     },
 });

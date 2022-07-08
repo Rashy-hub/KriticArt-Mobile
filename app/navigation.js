@@ -2,20 +2,19 @@
 import { NavigationContainer } from '@react-navigation/native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { useAtom } from 'jotai'
 
-import { themeAtom } from './atom'
 import { PrivatePage } from './screens/privatePage'
 import { ComptePage } from './screens/comptePage'
 import { GalleriesPage } from './screens/galleriesPage'
 import { FavoriePage } from './screens/favoriePage'
 import { HomePage } from './screens/homePage'
+import { useTheme } from './styles/theme'
 
 
 const Tab = createBottomTabNavigator()
 
 export default Navigation = () => {
-    const [theme] = useAtom(themeAtom)
+    const theme = useTheme()
     return (
         <NavigationContainer style={{ flex: 1 }} theme={theme}>
             <Tab.Navigator
