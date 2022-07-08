@@ -1,7 +1,8 @@
 
 import { NavigationContainer } from '@react-navigation/native';
+
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { useAtom } from 'jotai'
 import { themeAtom } from './atom';
 
@@ -10,14 +11,14 @@ import { ComptePage } from './screens/comptePage';
 import { GalleriesPage } from './screens/galleriesPage';
 import { FavoriePage } from './screens/favoriePage';
 import { HomePage } from './screens/homePage';
-
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RegisterPage } from './screens/registerPage';
 
 const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator();
 
-export default Navigation = () => {
-    const [theme] = useAtom(themeAtom)
-    return (
-        <NavigationContainer style={{ flex: 1 }} theme={theme}>
+const bottomTabNav=()=>{
+    
             <Tab.Navigator
                 initialRouteName='Acceuil'
                 screenOptions={({ route }) => ({
@@ -46,6 +47,19 @@ export default Navigation = () => {
                 <Tab.Screen name="Favoris" component={FavoriePage} />
                 <Tab.Screen name="Compte" component={ComptePage} />
             </Tab.Navigator>
-        </NavigationContainer >
+      
+}
+
+
+
+export default Navigation = () => {
+    const [theme] = useAtom(themeAtom)
+    return (
+        <NavigationContainer style={{ flex: 1 }} theme={theme}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='bottomTabNav' component={bottomTabNav} />    
+          <Stack.Screen name='register' component={RegisterPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
     )
 }
