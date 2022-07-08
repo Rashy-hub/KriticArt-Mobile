@@ -33,6 +33,12 @@ export function useTheme() {
         ...theme,
         title: {
             color: theme.colors.text
+        },
+        button: {
+            backgroundColor: theme.colors.text
+        },
+        buttonText: {
+            color: theme.colors.background
         }
     }
 }

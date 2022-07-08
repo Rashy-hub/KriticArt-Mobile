@@ -8,8 +8,8 @@ export default Bouton = ({ title, onPress }) => {
             backgroundColor: pressed
                 ? theme.colors.card
                 : theme.colors.background
-        }, styles.button,]}>
-        <Text style={styles.buttonText}>
+        }, [styles.button, theme.button],]}>
+        <Text style={[styles.buttonText, theme.buttonText]}>
             {title}
         </Text>
     </Pressable>
