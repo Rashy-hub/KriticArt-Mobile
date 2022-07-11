@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text } from "react-native"
 
-export default Bouton = ({ title, onPress }) => {
+export default  Bouton = ({ title, onPress }) => {
     return <Pressable onPress={onPress} style={({ pressed }) => [
         {
             backgroundColor: pressed

@@ -53,7 +53,7 @@ export const useLazyLoading = (imgSelector, items) => {
           if (!newImgSrc) {
             console.error('Image source is invalid');
           } else {
-            currentImg.src = newImgSrc;
+            currentImg.source = newImgSrc;
           }
           intObs.unobserve(node);
         }
@@ -65,8 +65,9 @@ export const useLazyLoading = (imgSelector, items) => {
   const imagesRef = useRef(null);
 
   useEffect(() => {
-    imagesRef.current = document.querySelectorAll(imgSelector);
-
+   // imagesRef.current = document.querySelectorAll(imgSelector);
+   const imageDemo=[{athor:"rachid",source:"https://source.unsplash.com/random/200x200"}]
+    imagesRef.current=imageDemo
     if (imagesRef.current) {
       imagesRef.current.forEach(img => imgObserver(img));
     }

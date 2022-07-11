@@ -4,21 +4,19 @@ import { storeData, logCurrentStorage, clearAll } from '../utils/storage/storage
 import { registerNormalInfos } from '../hooks/queries-hook';
 import { NavigationContext } from '@react-navigation/native';
 
-export  const Register = () => {
+export  const Login = () => {
     const navigation = React.useContext(NavigationContext);
-    const [email, setEmail] = useState('');
-    const [pseudo, setPseudo] = useState('');
-    const [password, setPass] = useState('');
-    const [password2, setPass2] = useState('');
+    const [email, setEmail] = useState('');  
+    const [password, setPass] = useState('');  
     const [error, setError] = useState('');
 
     console.log("nav: " + JSON.stringify(navigation, null, 4));
 
-    const register = () => {
+    const login = () => {
         //navigation.params.onGoBack({ register: true });
-        registerNormalInfos({ "email": email, "pseudo": pseudo, "password": password })
+        registerNormalInfos({ "email": email, "password": password })
             .then(item => {
-                console.log("register done : " + JSON.stringify(item.data, null, 4));
+                console.log("login done : " + JSON.stringify(item.data, null, 4));
                 storeData({ "id": item.data.id.toString(), "email": item.data.email, "token": item.data.token, "expire": item.data.expire })
                 navigation.navigate('user', { connected: true })
             })
@@ -28,7 +26,7 @@ export  const Register = () => {
     }
     return (
         <View style={styles.container} >
-            <Text style={styles.titleStyle}>Register</Text>
+            <Text style={styles.titleStyle}>Login</Text>
             <TextInput
                 //defaultValue='test@test.b'
                 style={styles.inputStyle}
@@ -36,13 +34,7 @@ export  const Register = () => {
                 placeholderTextColor="#a2b4dfad"
                 onChangeText={value => setEmail(value)}
             />
-            <TextInput
-                //defaultValue='benohi'
-                style={styles.inputStyle}
-                placeholder='pseudo'
-                placeholderTextColor="#a2b4dfad"
-                onChangeText={value => setPseudo(value)}
-            />
+     
             <TextInput
                 //defaultValue='Test-123'
                 style={styles.inputStyle}
@@ -50,20 +42,16 @@ export  const Register = () => {
                 placeholderTextColor="#a2b4dfad"
                 onChangeText={value => setPass(value)}
             />
-            <TextInput
-                //defaultValue='Test-123'
-                style={styles.inputStyle}
-                placeholder='confirm password'
-                placeholderTextColor="#a2b4dfad"
-                onChangeText={value => setPass2(value)}
-            />
-            {password != password2 && <Text >Les mots de passe ne correspondent pas</Text>}
-            <Button title='Register' disabled={
-                !email && !password && !password2 && (password === password2)
+      
+           {/* {password != password2 && <Text >Les mots de passe ne correspondent pas</Text>} */}
+            <Button title='Login' disabled={
+                !email && !password 
 
-            } onPress={() => register()}
+            } onPress={() => login()}
 
             />
+
+            <Button title="Back" onPress={()=>navigation.goBack()}/>
 
         </View >
     )

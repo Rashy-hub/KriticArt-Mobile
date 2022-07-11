@@ -76,7 +76,7 @@ export const PublicGallery = (props) => {
       }, []);
     
       useEffect(() => {
-        console.log('obtained serverData', serverData);
+        //console.log('obtained serverData', serverData);
         if (serverData.length > 0) {
           setRefresh(false);
           setClientData([...clientData, ...serverData]);
@@ -89,19 +89,19 @@ export const PublicGallery = (props) => {
     
       useEffect(() => {
         console.log('load more with page', page);
-        if (serverData.length == limit || page == 1) {
+        
           setPending_process(true);
-          requestToServer(page);
-        }
+          requestToServer(10);
+        
       }, [page]);
     
       const handleLoadMore = () => {
         console.log('loadmore', loadmore);
         console.log('pending_process', pending_process);
-        requestToServer(page);
-        if (loadmore && !pending_process) {
+       // requestToServer(page);
+       // if (loadmore && !pending_process) {
           setPage(page + 1);
-        }
+        
       };
     
       const onRefresh = () => {
@@ -138,7 +138,7 @@ export const PublicGallery = (props) => {
              data={clientData}
              renderItem={renderItem}
              onEndReached={handleLoadMore}
-             onEndReachedThreshold= {1}
+             onEndReachedThreshold= {0}
              onRefresh={() => onRefresh()}
              refreshing={refresh}
              

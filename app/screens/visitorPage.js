@@ -10,6 +10,7 @@ import { NavigationContext } from '@react-navigation/native';
 
 
 
+
 export const VisitorPage = ({navigation})=>{
     //const navigation = React.useContext(NavigationContext);
     //console.log("nav "+ JSON.stringify(navigation,null,4));
@@ -20,7 +21,7 @@ return(
         <View style={{width:"60%" , height :"20%",justifyContent:"flex-start",marginLeft:"20%"}}>
         <ButtonSolid
             title={'Login'}
-            
+            onPress={()=>navigation.navigate("login")}
             useColor={'darkblue'}
             
         /> 

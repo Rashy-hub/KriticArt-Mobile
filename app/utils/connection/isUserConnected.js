@@ -1,3 +1,3 @@
-export const isUserConnected=()=>{
- return false
+export const isUserConnected = () => {
+    return true
 }
