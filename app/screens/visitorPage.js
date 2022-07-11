@@ -10,9 +10,9 @@ import { NavigationContext } from '@react-navigation/native';
 
 
 
-export const VisitorPage = ()=>{
-    const navigation = React.useContext(NavigationContext);
-    console.log("nav "+ JSON.stringify(navigation,null,4));
+export const VisitorPage = ({navigation})=>{
+    //const navigation = React.useContext(NavigationContext);
+    //console.log("nav "+ JSON.stringify(navigation,null,4));
 return(
     <View  style={{ flex: 1}}>
 

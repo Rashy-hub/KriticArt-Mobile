@@ -4,7 +4,7 @@ import { storeData, logCurrentStorage, clearAll } from '../utils/storage/storage
 import { registerNormalInfos } from '../hooks/queries-hook';
 import { NavigationContext } from '@react-navigation/native';
 
-const Register = () => {
+export  const Register = () => {
     const navigation = React.useContext(NavigationContext);
     const [email, setEmail] = useState('');
     const [pseudo, setPseudo] = useState('');
@@ -102,4 +102,3 @@ const styles = StyleSheet.create({
 
 });
 
-export default Register;

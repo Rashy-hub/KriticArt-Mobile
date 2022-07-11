@@ -22,10 +22,12 @@ export default function App() {
     return null;
   }
 
-  const isConnected = isUserConnected()
+
+/*   const isConnected = isUserConnected()
   if (!isConnected) {
     return (<VisitorPage />)
-  }
+   // <Stack.Screen name='visitor' component={VisitorPage}/>
+  } */
 
 
 

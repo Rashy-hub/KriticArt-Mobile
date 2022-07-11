@@ -13,12 +13,16 @@ import { FavoriePage } from './screens/favoriePage';
 import { HomePage } from './screens/homePage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RegisterPage } from './screens/registerPage';
+import { VisitorPage } from './screens/visitorPage';
+import { isUserConnected } from './utils/connection/isUserConnected';
+
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator();
 
 const bottomTabNav=()=>{
-    
+    const [theme] = useAtom(themeAtom)
+    return(
             <Tab.Navigator
                 initialRouteName='Acceuil'
                 screenOptions={({ route }) => ({
@@ -47,19 +51,29 @@ const bottomTabNav=()=>{
                 <Tab.Screen name="Favoris" component={FavoriePage} />
                 <Tab.Screen name="Compte" component={ComptePage} />
             </Tab.Navigator>
-      
+      )
 }
 
 
 
 export default Navigation = () => {
     const [theme] = useAtom(themeAtom)
+    const isConnected = isUserConnected()
     return (
         <NavigationContainer style={{ flex: 1 }} theme={theme}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name='bottomTabNav' component={bottomTabNav} />    
+          {isConnected? <Stack.Screen name='bottomTabNav' component={bottomTabNav} />    :  <Stack.Screen name='visitor' component={VisitorPage} /> }         
           <Stack.Screen name='register' component={RegisterPage} />
+          
+          
         </Stack.Navigator>
       </NavigationContainer>
     )
+        if(isConnected)
+        return (<VisitorPage navigate={navigate} />);
+       
+
+
 }
+
+
