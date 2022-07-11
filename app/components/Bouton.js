@@ -6,8 +6,8 @@ export default Bouton = ({ title, onPress }) => {
     return <Pressable onPress={onPress} style={({ pressed }) => [
         {
             backgroundColor: pressed
-                ? theme.colors.card
-                : theme.colors.background
+                ? theme.colors.text
+                : theme.colors.primary
         }, [styles.button, theme.button],]}>
         <Text style={[styles.buttonText, theme.buttonText]}>
             {title}

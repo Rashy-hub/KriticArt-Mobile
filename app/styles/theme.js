@@ -39,6 +39,9 @@ export function useTheme() {
         },
         buttonText: {
             color: theme.colors.background
+        },
+        subTitle: {
+            color: theme.colors.primary
         }
     }
 }

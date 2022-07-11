@@ -15,16 +15,14 @@ export const AppTitle = () => {
 
 const styles = StyleSheet.create({
     container: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "10%"
-
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: '10%',
     },
 
     titleText: {
         fontFamily: "Courgette",
-        fontSize: 30,
-
+        fontSize: 40,
     }
 });
