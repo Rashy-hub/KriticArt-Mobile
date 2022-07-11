@@ -1,7 +1,6 @@
 import { AppTitle } from '../components/AppTitle'
 import { Text, View, StyleSheet } from 'react-native'
-import { useAtom } from 'jotai'
-import { DARK, LIGHT, ThemeAtom, useTheme } from '../styles/theme'
+import { useTheme } from '../styles/theme'
 import Bouton from '../components/Bouton'
 
 export const ComptePage = () => {

@@ -1,11 +1,9 @@
-import React from "react";
-import { Text, StyleSheet, View } from "react-native";
-import { useTheme } from "../styles/theme";
-
+import React from 'react'
+import { Text, StyleSheet, View } from 'react-native'
+import { useTheme } from '../styles/theme'
 
 export const AppTitle = () => {
     const theme = useTheme()
-
     return (
         <View style={styles.container}>
             <Text style={[styles.titleText, theme.title]}>KriticArt</Text>
@@ -22,7 +20,7 @@ const styles = StyleSheet.create({
     },
 
     titleText: {
-        fontFamily: "Courgette",
+        fontFamily: 'Courgette',
         fontSize: 40,
     }
 });

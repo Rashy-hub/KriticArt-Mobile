@@ -28,7 +28,6 @@ export const ThemeAtom = atom(LIGHT)
 
 export function useTheme() {
     const [theme, updateTheme] = useAtom(ThemeAtom)
-
     return {
         ...theme,
         toggle: () => { updateTheme(theme === DARK ? LIGHT : DARK) },
