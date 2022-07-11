@@ -27,10 +27,11 @@ export const DARK = {
 export const ThemeAtom = atom(LIGHT)
 
 export function useTheme() {
-    const [theme] = useAtom(ThemeAtom)
+    const [theme, updateTheme] = useAtom(ThemeAtom)
 
     return {
         ...theme,
+        toggle: () => { updateTheme(theme === DARK ? LIGHT : DARK) },
         title: {
             color: theme.colors.text
         },

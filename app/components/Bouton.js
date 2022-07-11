@@ -1,18 +1,15 @@
-import { Pressable, StyleSheet, Text } from 'react-native'
+import { Pressable, StyleSheet, Text, TouchableHighlight, TouchableOpacity } from 'react-native'
 import { useTheme } from '../styles/theme'
 
 export default Bouton = ({ title, onPress }) => {
     const theme = useTheme()
-    return <Pressable onPress={onPress} style={({ pressed }) => [
-        {
-            backgroundColor: pressed
-                ? theme.colors.text
-                : theme.colors.primary
-        }, [styles.button, theme.button],]}>
-        <Text style={[styles.buttonText, theme.buttonText]}>
-            {title}
-        </Text>
-    </Pressable>
+    return (
+        <TouchableOpacity onPress={onPress} style={[styles.button, theme.button]}>
+            <Text style={[styles.buttonText, theme.buttonText]}>
+                {title}
+            </Text>
+        </TouchableOpacity>
+    )
 }
 
 const styles = StyleSheet.create({

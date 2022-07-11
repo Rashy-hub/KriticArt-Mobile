@@ -5,14 +5,13 @@ import { DARK, LIGHT, ThemeAtom, useTheme } from '../styles/theme'
 import Bouton from '../components/Bouton'
 
 export const ComptePage = () => {
-    const [theme, updateTheme] = useAtom(ThemeAtom)
-    const theme2 = useTheme()
+    const theme = useTheme()
     return (
         <View style={styles.container}>
             <AppTitle />
-            <Text style={[styles.subTitle, theme2.subTitle]}>Gestion de votre compte</Text>
+            <Text style={[styles.subTitle, theme.subTitle]}>Gestion de votre compte</Text>
             <Bouton title="Changer de thème (Dark <=> Light)"
-                onPress={() => { updateTheme(theme === DARK ? LIGHT : DARK) }} />
+                onPress={() => { theme.toggle() }} />
         </View>
     )
 }
