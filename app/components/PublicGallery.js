@@ -1,7 +1,7 @@
 import { View, Text, Image, SafeAreaView, } from "react-native"
 import { ReactElement, useEffect, useMemo, useState } from "react";
 import MasonryList from '@react-native-seoul/masonry-list';
-import { getRandomPictures } from "../services/unsplashRequest"
+import { getRandomPictures } from "../services/ApiRequest"
 
 //  here call api service getImagesPublic
 
@@ -11,7 +11,7 @@ const ImageCard = (item) => {
 
     const randomBool = useMemo(() => Math.random() < 0.5, []);
     return (
-        <View key={item.item.id} style={{ marginTop: 12, flex: 1 }}>
+        <View key={item.item.id} style={{ marginTop: 8, flex: 1 }}>
 
             <Image
                 source={{ uri: item.item.uri }}

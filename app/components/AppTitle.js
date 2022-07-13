@@ -1,28 +1,28 @@
 import React from "react";
-import { Text, StyleSheet ,View} from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 
 
-export const AppTitle=()=>{
+export const AppTitle = () => {
 
-    return(
+    return (
         <View style={styles.container}>
-            <Text  style={styles.titleText}>KriticArt</Text>
+            <Text style={styles.titleText}>KriticArt</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         display: "flex",
-        flexDirection:"column",
-        alignItems:"center",
-        marginTop:"10%"
-        
+        flexDirection: "column",
+        alignItems: "center",
+        marginTop: "5%"
+
     },
 
     titleText: {
-      fontFamily: "Courgette",
-      fontSize: 30,
-      
+        fontFamily: "Courgette",
+        fontSize: 35,
+
     }
-  });
+});

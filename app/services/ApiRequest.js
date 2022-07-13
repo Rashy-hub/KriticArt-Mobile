@@ -7,7 +7,7 @@ import { encode } from 'base64-arraybuffer';
 
 export const getRandomPictures = async (limit, offset) => {
 
-    const result = await getCreateAxios(false).get("/photo/getpublics" + "?limit=" + limit + "&offset=" + offset);
+    const result = await getCreateAxios(false, true).get("/photo/getpublics" + "?limit=" + limit + "&offset=" + offset);
     console.log("received limit : " + limit)
     console.log("received offset : " + offset)
     let data = [];
@@ -31,4 +31,12 @@ export const getRandomPictures = async (limit, offset) => {
 
 
 }
+
+export const AuthentificateUser = async () => {
+
+
+}
+
+
+
 

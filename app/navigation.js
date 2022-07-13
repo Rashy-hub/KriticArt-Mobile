@@ -61,11 +61,12 @@ export default Navigation = () => {
     const isConnected = isUserConnected()
     return (
         <NavigationContainer style={{ flex: 1 }} theme={theme} >
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={true ? "BottomTabNav" : "visitor"}>
-                <Stack.Screen name='visitor' component={VisitorPage} />
+            <Stack.Navigator screenOptions={{ headerShown: false }} >
+                {isConnected ? <Stack.Screen name='bottomTabNav' component={BottomTabNav} /> : <Stack.Screen name='visitor' component={VisitorPage} />}
                 <Stack.Screen name='BottomTabNav' component={BottomTabNav} />
                 <Stack.Screen name='register' component={RegisterPage} />
                 <Stack.Screen name='login' component={LoginPage} />
+
             </Stack.Navigator>
         </NavigationContainer>
     )
