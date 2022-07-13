@@ -18,7 +18,7 @@ import { isUserConnected } from './utils/connection/isUserConnected'
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
-const bottomTabNav = () => {
+const BottomTabNav = () => {
     return (
         <Tab.Navigator
             initialRouteName='Acceuil'
@@ -53,10 +53,9 @@ export default Navigation = () => {
     return (
         <NavigationContainer style={{ flex: 1 }} theme={theme}>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                {isConnected ? <Stack.Screen name='bottomTabNav' component={bottomTabNav} /> : <Stack.Screen name='visitor' component={VisitorPage} />}
+                {isConnected ? <Stack.Screen name='bottomTabNav' component={BottomTabNav} /> : <Stack.Screen name='visitor' component={VisitorPage} />}
                 <Stack.Screen name='register' component={RegisterPage} />
             </Stack.Navigator>
         </NavigationContainer >
     )
-    if (isConnected) return (<VisitorPage navigate={navigate} />)
 }
