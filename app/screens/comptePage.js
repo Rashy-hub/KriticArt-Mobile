@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native'
 import { useTheme } from '../styles/theme'
 import Bouton from '../components/Bouton'
 
-export const ComptePage = () => {
+export const ComptePage = ({ navigation }) => {
     const theme = useTheme()
     return (
         <View style={styles.container}>
@@ -11,6 +11,11 @@ export const ComptePage = () => {
             <Text style={[styles.subTitle, theme.subTitle]}>Gestion de votre compte</Text>
             <Bouton title="Changer de thème (Dark <=> Light)"
                 onPress={() => { theme.toggle() }} />
+            <Bouton title="Se déconnecter de l'application"
+                onPress={() => {
+                    alert("Vous avez été déconnecté de l'application !")
+                    console.log("Vous avez été déconnecté de l'application !")
+                }} />
         </View>
     )
 }
@@ -23,5 +28,5 @@ const styles = StyleSheet.create({
     subTitle: {
         marginTop: 20,
         textTransform: 'uppercase',
-    }
+    },
 })

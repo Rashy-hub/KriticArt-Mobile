@@ -14,9 +14,10 @@ export default Bouton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
     button: {
-        marginTop: 20,
+        marginTop: 30,
         padding: 20,
         height: 60,
+        width: '80%',
         justifyContent: 'center',
         alignItems: 'center',
     },
