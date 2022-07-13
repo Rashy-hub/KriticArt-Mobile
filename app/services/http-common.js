@@ -1,9 +1,9 @@
 import axios from "axios";
-import { UnsplashKeys } from '../utils/connection/unsplashConnection'
+import { KriticArtToken } from '../utils/bearerToken'
 
 
 
-export const getAxios = (isMultiPart = false) => {
+export const getCreateAxios = (isMultiPart = false) => {
 
 
 
@@ -12,14 +12,14 @@ export const getAxios = (isMultiPart = false) => {
 
         "Content-Type": isMultiPart ? "multipart/form-data" : "application/json",
 
-        Authorization: `Client-ID ${UnsplashKeys.accessKey}`
+        Authorization: `Bearer ${KriticArtToken.bearerToken}`
 
     };
 
 
     return axios.create({
 
-        baseURL: "https://api.unsplash.com",
+        baseURL: "http://10.0.2.2:8080/api",
 
         headers
 
