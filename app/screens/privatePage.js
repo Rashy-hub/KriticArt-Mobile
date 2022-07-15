@@ -1,14 +1,14 @@
 import { AppTitle } from "../components/AppTitle"
 import { StatusBar, Text, View, Button, TextInput } from 'react-native';
-import { PublicGallery } from "../components/PublicGallery";
+import { PrivateGallery } from "../components/PrivatesGallery";
 
 
-export const PrivatePage = ()=>{
-return(
-    <View style={{ flex: 1}}>
-        <AppTitle/> 
-        <PublicGallery/>        
-       
-    </View>
+export const PrivatePage = () => {
+    return (
+        <View style={{ flex: 1 }}>
+            <AppTitle />
+            <PrivateGallery />
+
+        </View>
     )
 }

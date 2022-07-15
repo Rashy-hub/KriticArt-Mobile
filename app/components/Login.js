@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { View, Button, Text, TitleText, TextInput, FlatList, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
-import { storeData, logCurrentStorage, clearAll } from '../utils/storage/storage';
-import { registerNormalInfos } from '../hooks/queries-hook';
-import { NavigationContext } from '@react-navigation/native';
+import { storeData, getToken, logCurrentStorage, clearAll } from '../utils/storage/storage';
+import { LoginUser } from '../services/ApiRequest'
 
-export  const Login = () => {
-    const navigation = React.useContext(NavigationContext);
-    const [email, setEmail] = useState('');  
-    const [password, setPass] = useState('');  
+
+export const Login = (props) => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPass] = useState('');
     const [error, setError] = useState('');
 
-    console.log("nav: " + JSON.stringify(navigation, null, 4));
+    // console.log("nav: " + JSON.stringify(navigation, null, 4));
 
     const login = () => {
         //navigation.params.onGoBack({ register: true });
-        registerNormalInfos({ "email": email, "password": password })
-            .then(item => {
-                console.log("login done : " + JSON.stringify(item.data, null, 4));
-                storeData({ "id": item.data.id.toString(), "email": item.data.email, "token": item.data.token, "expire": item.data.expire })
-                navigation.navigate('user', { connected: true })
-            })
-            .catch(function (error) {
-                console.log("Erreur a l'enregistrement: " + error);
-            })
+        let token = getToken()
+        LoginUser({ "email": email, "password": password }, token).then(item => {
+
+            storeData({ "id": item.data.id.toString(), "email": email, "token": item.data.token, "expire": item.data.expire })
+        })
+        props.nav.navigate("BottomTabNav")
+
     }
     return (
         <View style={styles.container} >
@@ -34,28 +32,33 @@ export  const Login = () => {
                 placeholderTextColor="#a2b4dfad"
                 onChangeText={value => setEmail(value)}
             />
-     
+
             <TextInput
                 //defaultValue='Test-123'
                 style={styles.inputStyle}
                 placeholder='password'
                 placeholderTextColor="#a2b4dfad"
                 onChangeText={value => setPass(value)}
+                secureTextEntry={true}
             />
-      
-           {/* {password != password2 && <Text >Les mots de passe ne correspondent pas</Text>} */}
+
+            {/* {password != password2 && <Text >Les mots de passe ne correspondent pas</Text>} */}
             <Button title='Login' disabled={
-                !email && !password 
+                !email && !password
 
             } onPress={() => login()}
 
             />
 
-            <Button title="Back" onPress={()=>navigation.goBack()}/>
+
 
         </View >
     )
+
 }
+
+
+
 
 const styles = StyleSheet.create({
     titleStyle: {

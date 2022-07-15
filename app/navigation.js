@@ -16,6 +16,7 @@ import { RegisterPage } from './screens/registerPage';
 import { VisitorPage } from './screens/visitorPage';
 import { isUserConnected } from './utils/connection/isUserConnected';
 import { LoginPage } from './screens/loginPage';
+import { useEffect } from 'react';
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator();
@@ -58,6 +59,7 @@ const BottomTabNav = () => {
 
 export default Navigation = () => {
     const [theme] = useAtom(themeAtom)
+
     const isConnected = isUserConnected()
     return (
         <NavigationContainer style={{ flex: 1 }} theme={theme} >

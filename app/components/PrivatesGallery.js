@@ -1,8 +1,7 @@
-import { View, Text, Image, SafeAreaView, Pressable, Modal, StyleSheet } from "react-native"
+import { View, Text, Image, SafeAreaView, } from "react-native"
 import { ReactElement, useEffect, useMemo, useState } from "react";
 import MasonryList from '@react-native-seoul/masonry-list';
-import { getRandomPictures } from "../services/ApiRequest"
-
+import { getPrivatePictures } from "../services/ApiRequest"
 
 
 //  here call api service getImagesPublic
@@ -11,78 +10,34 @@ import { getRandomPictures } from "../services/ApiRequest"
 
 const ImageCard = (item) => {
 
-    const [modalVisible, setModalVisible] = useState(false);
     const randomBool = useMemo(() => Math.random() < 0.5, []);
     return (
-
         <View key={item.item.id} style={{ marginTop: 8, flex: 1 }}>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                    setModalVisible(!modalVisible);
+
+            <Image
+                source={{ uri: item.item.uri }}
+                style={{
+                    height: randomBool ? 150 : 280,
+                    alignSelf: 'stretch',
+                    marginRight: 10,
+                    marginLeft: 10,
+                    borderWidth: 2
+
                 }}
+                resizeMode="cover"
+            />
 
-            >
-                <Pressable
-                    onPress={() => setModalVisible(!modalVisible)}
-                    onPressOut={() => setModalVisible(!modalVisible)}>
-                    <Image
-                        source={{ uri: item.item.uri }}
-                        style={{
-                            height: 650,
-                            alignSelf: 'stretch',
-                            marginRight: 10,
-                            marginLeft: 10,
-                            borderWidth: 2,
-
-                        }}
-                        resizeMode="cover"
-                    />
-                </Pressable>
-
-                <Text
-                    style={{
-                        marginTop: 8,
-                        fontSize: 24,
-                        fontFamily: 'Courgette'
-
-                    }}>
-                    {item.item.author}
-                </Text>
-
-            </Modal>
-
-
-            <Pressable onPress={() => setModalVisible(!modalVisible)}>
-                <Image
-                    source={{ uri: item.item.uri }}
-                    style={{
-                        height: randomBool ? 150 : 280,
-                        alignSelf: 'stretch',
-                        marginRight: 10,
-                        marginLeft: 10,
-                        borderWidth: 2,
-
-
-                    }}
-                    resizeMode="cover"
-                />
-            </Pressable>
             <Text
                 style={{
                     marginTop: 8,
-                    fontSize: 18,
-                    fontFamily: 'Courgette',
-                    marginLeft: 10
                 }}>
                 {item.item.author}
             </Text>
 
-        </View>
 
+
+
+        </View>
     )
 
 
@@ -96,7 +51,7 @@ const renderItem = ({ item }) => {
     )
 }
 
-export const PublicGallery = (props) => {
+export const PrivateGallery = (props) => {
     //const [images, updateImages] = useState()
     const [page, setPage] = useState(0)
     const [limit] = useState(5);
@@ -113,7 +68,7 @@ export const PublicGallery = (props) => {
          }; */
 
     const requestToServer = async (limit, page) => {
-        getRandomPictures(limit, page).then(
+        getPrivatePictures(limit, page).then(
 
             value => {
                 if (value.length === 0)
@@ -209,31 +164,9 @@ export const PublicGallery = (props) => {
 
             />
 
+
+
+
         </SafeAreaView>
     )
 }
-
-
-const styles = StyleSheet.create({
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-    }
-});

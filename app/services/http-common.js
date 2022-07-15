@@ -1,9 +1,10 @@
 import axios from "axios";
-import { KriticArtToken } from '../utils/bearerToken'
+//import { KriticArtToken } from '../utils/bearerToken'
 
 
 
-export const getCreateAxios = (isMultiPart = false, isConnected = false) => {
+export const getCreateAxios = (isMultiPart = false, isConnected = false, token = "") => {
+
 
 
 
@@ -12,7 +13,7 @@ export const getCreateAxios = (isMultiPart = false, isConnected = false) => {
 
         "Content-Type": isMultiPart ? "multipart/form-data" : "application/json",
 
-        Authorization: isConnected ? `Bearer ${KriticArtToken.bearerToken}` : undefined,
+        Authorization: isConnected ? `Bearer ${token}` : undefined,
 
     };
 

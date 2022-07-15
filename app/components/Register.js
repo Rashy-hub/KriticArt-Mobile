@@ -1,30 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { View, Button, Text, TitleText, TextInput, FlatList, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
 import { storeData, logCurrentStorage, clearAll } from '../utils/storage/storage';
-import { registerNormalInfos } from '../hooks/queries-hook';
-import { NavigationContext } from '@react-navigation/native';
+import { RegisterUser } from '../services/ApiRequest'
 
-export  const Register = () => {
-    const navigation = React.useContext(NavigationContext);
+export const Register = (props) => {
+    // const navigation = React.useContext(NavigationContext);
     const [email, setEmail] = useState('');
     const [pseudo, setPseudo] = useState('');
     const [password, setPass] = useState('');
     const [password2, setPass2] = useState('');
     const [error, setError] = useState('');
 
-    console.log("nav: " + JSON.stringify(navigation, null, 4));
+    // console.log("nav: " + JSON.stringify(navigation, null, 4));
 
     const register = () => {
+
+        RegisterUser({ "username": pseudo, "email": email, "password": password }).then(item => { storeData({ "id": item.data.id.toString(), "email": item.data.email, "token": item.data.token, "expire": item.data.expire }) })
+        //navigation.navigate("login")
+        //console.log(props)
+        props.nav.navigate("login")
+
+
         //navigation.params.onGoBack({ register: true });
-        registerNormalInfos({ "email": email, "pseudo": pseudo, "password": password })
-            .then(item => {
-                console.log("register done : " + JSON.stringify(item.data, null, 4));
-                storeData({ "id": item.data.id.toString(), "email": item.data.email, "token": item.data.token, "expire": item.data.expire })
-                navigation.navigate('user', { connected: true })
-            })
-            .catch(function (error) {
-                console.log("Erreur a l'enregistrement: " + error);
-            })
+        /*         registerNormalInfos({ "email": email, "pseudo": pseudo, "password": password })
+                    .then(item => {
+                        console.log("register done : " + JSON.stringify(item.data, null, 4));
+                        storeData({ "id": item.data.id.toString(), "email": item.data.email, "token": item.data.token, "expire": item.data.expire })
+                        navigation.navigate('user', { connected: true })
+                    })
+                    .catch(function (error) {
+                        console.log("Erreur a l'enregistrement: " + error);
+                    }) */
     }
     return (
         <View style={styles.container} >
